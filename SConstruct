@@ -5,7 +5,7 @@ tools = ['default']
 if os.name == 'nt':
 	tools = ['mingw']
 
-env = Environment(tools = tools)
+env = Environment(tools = tools, ENV = {'PATH' : os.environ['PATH']}, LIBPATH = ["lua/src"])
 
 options_file = None
 if sys.platform == 'linux2':
@@ -16,7 +16,7 @@ elif 'msvc' in env['TOOLS']:
 else:
 	options_file = "posix"
 
-opts = Options(["config_"+options_file+".py", "custom.py", "custom_"+options_file+".py"], ARGUMENTS)
+opts = Variables(["config_"+options_file+".py", "custom.py", "custom_"+options_file+".py"], ARGUMENTS)
 opts.Add('CC', 'The C compiler.')
 opts.Add('CXX', 'The C++ compiler (for the tests)')
 opts.Add('CCFLAGS', 'Flags for the compiler.', ['-O2', '-Wall'])
@@ -65,7 +65,7 @@ def pkg_scan_dep(self, target, source):
 	## TODO: detectar si el archivo existe antes de abrirlo asi nomas
 	pkg = open(source, "rt")
 
-	for linea in pkg.xreadlines():
+	for linea in pkg.readlines():
 		dep = re.search("^[\t\w]*\$[cphl]file\s*\"([^\"]+)\"", linea)
 		if dep:
 			self.Depends(target, '#' + dep.groups()[0]);
