@@ -1,5 +1,5 @@
 CCFLAGS = ['-Ilua/src', '-Isrc/lib', '-O2', '-ansi']
-LIBPATH = ['lua/src']
+LIBPATH = ['../../lua/src']
 LIBS = ['lua', 'dl', 'm']
 prefix = '/mingw'
 #build_dev=1

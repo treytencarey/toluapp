@@ -28,3 +28,33 @@ This is tolua++-1.0
   tolua++ is maintained by Ariel Manzur.
   Send your comments, bug reports and anything else to 
   tolua@codenix.com
+
+----
+
+# Setup
+
+### Python
+
+* Install Python (currently using 3.11)
+  * Get `pip` if necessary: `py -m ensurepip --upgrade`
+  * Update `pip` if necessary: `python.exe -m pip install --upgrade pip`
+* Install [Cygwin](https://sourceware.org/cygwin/)
+  * During installation, you will need packages `gcc-core` and `make`
+* Install [SCons](https://github.com/SCons/scons)
+  * In this directory, run `setup install`
+  * Add the `scripts/` directory to environment variables, if necessary, to run the `scons.bat` command
+
+### Autobuild tolua++
+
+* Build in Cygwin with `autobuild.sh`
+  * May need to modify `lua/luaconf.h` to set LUA_32BITS as `1`
+  * May need to run `scons.bat --clean` and try again.
+    * Clean may delete `toluabind.c`, so revert that if necessary.
+
+### Manually Build tolua++ (optional)
+
+* Download [Lua](https://www.lua.org/ftp/) (currently using 5.4.6)
+  * Extract to `lua/`
+  * Build Lua in Cygwin with `cd lua && make mingw`
+    * May need to modify `lua/luaconf.h` to set LUA_32BITS as `1`
+* Build tolua++ in Cygwn with `scons.bat`

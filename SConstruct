@@ -5,7 +5,7 @@ tools = ['default']
 if os.name == 'nt':
 	tools = ['mingw']
 
-env = Environment(tools = tools, ENV = {'PATH' : os.environ['PATH']}, LIBPATH = ["lua/src"])
+env = Environment(tools = tools, ENV = {'PATH' : os.environ['PATH']})
 
 options_file = None
 if sys.platform == 'linux2':
